@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace AmokApi.ExchangeRates
+{
+    public interface IExchangeRatesManager
+    {
+        Task<ExchangeRatesResponse> GetLatestRates();
+
+        Task<ExchangeRatesResponse> GetLatestRates(string baseCurrency);
+    }
+}

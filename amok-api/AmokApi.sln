@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmokApi", "AmokApi\AmokApi.csproj", "{DCC474DE-9D7D-412F-B5F6-9E0560BD99DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmokApi.UnitTests", "AmokApi.UnitTests\AmokApi.UnitTests.csproj", "{AB429FCF-BBA8-410C-9B32-F61706D85A11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCC474DE-9D7D-412F-B5F6-9E0560BD99DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCC474DE-9D7D-412F-B5F6-9E0560BD99DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCC474DE-9D7D-412F-B5F6-9E0560BD99DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCC474DE-9D7D-412F-B5F6-9E0560BD99DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB429FCF-BBA8-410C-9B32-F61706D85A11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB429FCF-BBA8-410C-9B32-F61706D85A11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB429FCF-BBA8-410C-9B32-F61706D85A11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB429FCF-BBA8-410C-9B32-F61706D85A11}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AC510D41-025A-4E9D-A9BE-43DF9BD608D8}
+	EndGlobalSection
+EndGlobal
