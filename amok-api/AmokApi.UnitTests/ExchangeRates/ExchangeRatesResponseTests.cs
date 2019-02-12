@@ -44,5 +44,75 @@ namespace AmokApi.UnitTests.ExchangeRates
 
             ctorAction.Should().Throw<ArgumentNullException>().WithMessage("*rates*");
         }
+
+        [Fact]
+        public void WhenTwoEmptyResponsesAreUsed_ThenTheyAreTheSameReference()
+        {
+            var empty1 = ExchangeRatesResponse.Empty;
+            var empty2 = ExchangeRatesResponse.Empty;
+
+            ReferenceEquals(empty1, empty2).Should().BeTrue();
+        }
+
+        [Fact]
+        public void WhenTwoResponsesHaveTheSameBaseAndDate_ThenTheyAreEquivalent()
+        {
+            var baseCurrency = "BASE";
+            var date = DateTime.UtcNow;
+
+            var response1 = new ExchangeRatesResponse(baseCurrency, date, new Dictionary<string, decimal>());
+            var response2 = new ExchangeRatesResponse(baseCurrency, date, new Dictionary<string, decimal>());
+
+            response1.Should().BeEquivalentTo(response2);
+        }
+
+        [Fact]
+        public void WhenSecondResponseIsNull_ThenEqualsReturnsFalse()
+        {
+            var baseCurrency = "BASE";
+            var date = DateTime.UtcNow;
+
+            var response1 = new ExchangeRatesResponse(baseCurrency, date, new Dictionary<string, decimal>());
+
+            response1.Equals(null).Should().BeFalse();
+        }
+
+        [Fact]
+        public void WhenTwoResponsesAreTheSameReference_ThenEqualsReturnsTrue()
+        {
+            var baseCurrency = "BASE";
+            var date = DateTime.UtcNow;
+
+            var response1 = new ExchangeRatesResponse(baseCurrency, date, new Dictionary<string, decimal>());
+            var response2 = response1;
+
+            response1.Equals(response2).Should().BeTrue();
+        }
+
+        [Fact]
+        public void WhenTwoResponsesDifferOnlyInBase_ThenEqualsReturnsFalse()
+        {
+            var base1 = "BASE";
+            var base2 = "EUR";
+            var date = DateTime.UtcNow;
+
+            var response1 = new ExchangeRatesResponse(base1, date, new Dictionary<string, decimal>());
+            var response2 = new ExchangeRatesResponse(base2, date, new Dictionary<string, decimal>());
+
+            response1.Equals(response2).Should().BeFalse();
+        }
+
+        [Fact]
+        public void WhenTwoResponsesDifferOnlyInDate_ThenEqualsReturnsFalse()
+        {
+            var base1 = "BASE";
+            var date1 = DateTime.UtcNow;
+            var date2 = date1.AddSeconds(10);
+
+            var response1 = new ExchangeRatesResponse(base1, date1, new Dictionary<string, decimal>());
+            var response2 = new ExchangeRatesResponse(base1, date2, new Dictionary<string, decimal>());
+
+            response1.Equals(response2).Should().BeFalse();
+        }
     }
 }

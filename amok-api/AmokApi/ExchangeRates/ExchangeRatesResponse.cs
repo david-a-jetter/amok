@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AmokApi.ExchangeRates
 {
-    public class ExchangeRatesResponse
+    public class ExchangeRatesResponse : IEquatable<ExchangeRatesResponse>
     {
         public string   BaseCurrency { get; }
         public DateTime Date         { get; }
         public IDictionary<string, decimal> Rates { get; }
+
+        public static readonly ExchangeRatesResponse Empty =
+            new ExchangeRatesResponse(
+                "NONE",
+                DateTime.UtcNow,
+                new Dictionary<string, decimal>());
 
         public ExchangeRatesResponse(
             string baseCurrency,
@@ -21,6 +25,17 @@ namespace AmokApi.ExchangeRates
             BaseCurrency = baseCurrency;
             Date         = date;
             Rates        = rates ?? throw new ArgumentNullException(nameof(rates));
+        }
+
+        public bool Equals(ExchangeRatesResponse other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(this, other)) return true;
+
+            var equals = this.BaseCurrency.Equals(other.BaseCurrency)
+                && this.Date.Equals(other.Date);
+
+            return equals;
         }
     }
 }
