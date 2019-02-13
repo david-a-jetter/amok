@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace AmokApi.ExchangeRates
 {
     public interface IExchangeRatesAccess
     {
-        Task<ExchangeRatesResponse> GetLatestRates();
+        Task<ExchangeRatesResponse> GetRates(ExchangeRatesRequest request);
 
         ExchangeRatesRequest DefaultRequest { get; }
     }

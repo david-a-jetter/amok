@@ -7,7 +7,6 @@ namespace AmokApi.ExchangeRates
 {
     public interface IExchangeRatesEngine
     {
-        Task<ExchangeRatesResponse> GetCachedRates(ExchangeRatesRequest request);
-        Task SaveRatesToCache(ExchangeRatesRequest request, ExchangeRatesResponse response);
+
     }
 }

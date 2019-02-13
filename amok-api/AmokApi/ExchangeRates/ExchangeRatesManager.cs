@@ -21,9 +21,8 @@ namespace AmokApi.ExchangeRates
 
         public async Task<ExchangeRatesResponse> GetLatestRates()
         {
-            var request = _Access.DefaultRequest;
-
-            var latestRates = await _Access.GetLatestRates().ConfigureAwait(false);
+            var request     = _Access.DefaultRequest;
+            var latestRates = await _Access.GetRates(request);
 
             return latestRates;
         }
