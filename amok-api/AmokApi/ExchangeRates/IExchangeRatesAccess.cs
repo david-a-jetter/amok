@@ -8,5 +8,7 @@ namespace AmokApi.ExchangeRates
     public interface IExchangeRatesAccess
     {
         Task<ExchangeRatesResponse> GetLatestRates();
+
+        ExchangeRatesRequest DefaultRequest { get; }
     }
 }

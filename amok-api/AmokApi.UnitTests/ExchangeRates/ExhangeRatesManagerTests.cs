@@ -4,7 +4,7 @@ using Moq;
 using System;
 using Xunit;
 
-namespace AmokApi.UnitTests
+namespace AmokApi.UnitTests.ExchangeRates
 {
     public class ExhangeRatesManagerTests
     {

@@ -32,10 +32,31 @@ namespace AmokApi.ExchangeRates
             if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
 
-            var equals = this.BaseCurrency.Equals(other.BaseCurrency)
-                && this.Date.Equals(other.Date);
+            var equals = BaseCurrency.Equals(other.BaseCurrency)
+                && Date.Equals(other.Date);
 
             return equals;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is null) return false;
+
+            if(obj is ExchangeRatesResponse other)
+            {
+                return Equals(other);
+            }
+            else
+            {
+                return base.Equals(obj);
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = BaseCurrency.GetHashCode() ^ Date.GetHashCode();
+
+            return hashCode;
         }
     }
 }

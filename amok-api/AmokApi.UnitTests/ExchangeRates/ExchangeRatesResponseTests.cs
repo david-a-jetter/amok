@@ -114,5 +114,65 @@ namespace AmokApi.UnitTests.ExchangeRates
 
             response1.Equals(response2).Should().BeFalse();
         }
+
+        [Fact]
+        public void WhenResponseIsCheckedForEqualityOfADifferentType_ThenReturnsFalse()
+        {
+            var baseCurrency = "BASE";
+            var date = DateTime.UtcNow;
+
+            var response1 = new ExchangeRatesResponse(baseCurrency, date, new Dictionary<string, decimal>());
+            var response2 = new object();
+
+            response1.Equals(response2).Should().BeFalse();
+        }
+
+        [Fact]
+        public void WhenResponseIsCheckedForEqualityOfNullObject_ThenReturnsFalse()
+        {
+            var baseCurrency = "BASE";
+            var date = DateTime.UtcNow;
+
+            var response1    = new ExchangeRatesResponse(baseCurrency, date, new Dictionary<string, decimal>());
+            object response2 = null;
+
+            response1.Equals(response2).Should().BeFalse();
+        }
+
+        [Fact]
+        public void WhenResponseIsCheckedForEqualityOfObjectOfDifferentType_ThenReturnsFalse()
+        {
+            var baseCurrency = "BASE";
+            var date = DateTime.UtcNow;
+
+            var response1 = new ExchangeRatesResponse(baseCurrency, date, new Dictionary<string, decimal>());
+            var response2 = (object)"STRING!";
+
+            response1.Equals(response2).Should().BeFalse();
+        }
+
+        [Fact]
+        public void WhenTwoResponsesHaveTheSameBaseAndDate_ThenObjectEqualityIsTrue()
+        {
+            var baseCurrency = "BASE";
+            var date = DateTime.UtcNow;
+
+            var response1 = new ExchangeRatesResponse(baseCurrency, date, new Dictionary<string, decimal>());
+            object response2 = new ExchangeRatesResponse(baseCurrency, date, new Dictionary<string, decimal>());
+
+            response1.Equals(response2).Should().BeTrue();
+        }
+
+        [Fact]
+        public void WhenTwoResponsesHaveTheSameBaseAndDate_ThenHashCodesAreEqual()
+        {
+            var baseCurrency = "BASE";
+            var date = DateTime.UtcNow;
+
+            var response1 = new ExchangeRatesResponse(baseCurrency, date, new Dictionary<string, decimal>());
+            var response2 = new ExchangeRatesResponse(baseCurrency, date, new Dictionary<string, decimal>());
+
+            response1.GetHashCode().Should().Be(response2.GetHashCode());
+        }
     }
 }

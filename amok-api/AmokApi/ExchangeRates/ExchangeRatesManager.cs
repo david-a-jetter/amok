@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AmokApi.ExchangeRates.Ecb;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,6 +21,8 @@ namespace AmokApi.ExchangeRates
 
         public async Task<ExchangeRatesResponse> GetLatestRates()
         {
+            var request = _Access.DefaultRequest;
+
             var latestRates = await _Access.GetLatestRates().ConfigureAwait(false);
 
             return latestRates;
