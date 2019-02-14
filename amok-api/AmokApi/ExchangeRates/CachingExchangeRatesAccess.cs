@@ -42,7 +42,7 @@ namespace AmokApi.ExchangeRates
 
         private string BuildCacheKey(ExchangeRatesRequest request)
         {
-            var cacheKey = $"{request.BaseCurrency}|{request.Date.ToString("yyyymmdd", CultureInfo.InvariantCulture)}";
+            var cacheKey = $"{request.BaseCurrency}|{request.Date.ToString("yyyyMMdd", CultureInfo.InvariantCulture)}";
 
             return cacheKey;
         }
