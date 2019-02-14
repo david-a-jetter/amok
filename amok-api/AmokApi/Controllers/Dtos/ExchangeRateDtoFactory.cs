@@ -1,16 +1,18 @@
 ﻿using AmokApi.ExchangeRates;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AmokApi.Controllers.Dtos
 {
     public class ExchangeRatesDtoFactory : IExchangeRatesDtoFactory
     {
-        public ExchangeRatesResponseDto BuildDto(ExchangeRatesResponse businessModel)
+        public ExchangeRatesResponseDto BuildDto(ExchangeRatesResponse exchangeRates)
         {
-            var dto = new ExchangeRatesResponseDto();
+            if (exchangeRates is null) throw new ArgumentNullException(nameof(exchangeRates));
+
+            var dto = new ExchangeRatesResponseDto(
+                exchangeRates.BaseCurrency,
+                exchangeRates.Date,
+                exchangeRates.Rates);
 
             return dto;
         }

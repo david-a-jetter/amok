@@ -5,7 +5,6 @@ using FluentAssertions;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -45,11 +44,14 @@ namespace AmokApi.UnitTests.Controllers
 
             dtoFactory.Setup(m => m.BuildDto(It.IsAny<ExchangeRatesResponse>()))
                 .Callback<ExchangeRatesResponse>(input => buildDtoInput = input)
-                .Returns(new ExchangeRatesResponseDto());
+                .Returns(new ExchangeRatesResponseDto(
+                    "base",
+                    DateTime.UtcNow,
+                    new Dictionary<string, decimal>()));
 
             var controller = new ExchangeRatesController(manager.Object, dtoFactory.Object);
 
-            await controller.CurrentRates();
+            await controller.Index();
 
             buildDtoInput.Should().Be(currentRates);
         }

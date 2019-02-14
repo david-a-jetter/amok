@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AmokApi.Controllers.Dtos;
+﻿using AmokApi.Controllers.Dtos;
 using AmokApi.ExchangeRates;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace AmokApi.Controllers
 {
@@ -24,7 +21,8 @@ namespace AmokApi.Controllers
             _DtoFactory = dtoFactory           ?? throw new ArgumentNullException(nameof(dtoFactory));
         }
 
-        public async Task<ActionResult<ExchangeRatesResponseDto>> CurrentRates()
+        [HttpGet]
+        public async Task<ActionResult<ExchangeRatesResponseDto>> Index()
         {
             var latestRates = await _Manager.GetLatestRates().ConfigureAwait(false);
             
