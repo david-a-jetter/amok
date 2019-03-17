@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AmokApi.ExchangeRates.Contracts;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 

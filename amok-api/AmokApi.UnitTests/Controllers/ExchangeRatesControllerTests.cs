@@ -1,6 +1,7 @@
 ﻿using AmokApi.Controllers;
 using AmokApi.Controllers.Dtos;
 using AmokApi.ExchangeRates;
+using AmokApi.ExchangeRates.Contracts;
 using FluentAssertions;
 using Moq;
 using System;

@@ -1,5 +1,5 @@
 ﻿using AmokApi.Controllers.Dtos;
-using AmokApi.ExchangeRates;
+using AmokApi.ExchangeRates.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;

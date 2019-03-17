@@ -12,7 +12,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
         </div>
         </header>
-        <ExchangeRates apiHost="http://localhost:53383" />
+        <ExchangeRates apiHost="http://localhost:5000" />
       </div>
     );
   }

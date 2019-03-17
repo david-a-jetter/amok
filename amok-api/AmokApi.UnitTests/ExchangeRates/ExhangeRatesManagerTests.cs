@@ -1,4 +1,5 @@
 using AmokApi.ExchangeRates;
+using AmokApi.ExchangeRates.Contracts;
 using FluentAssertions;
 using Moq;
 using System;

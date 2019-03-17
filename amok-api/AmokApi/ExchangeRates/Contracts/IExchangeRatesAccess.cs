@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace AmokApi.ExchangeRates
+namespace AmokApi.ExchangeRates.Contracts
 {
     public interface IExchangeRatesAccess
     {

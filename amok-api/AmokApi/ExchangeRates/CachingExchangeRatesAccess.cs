@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AmokApi.ExchangeRates.Contracts;
+using System;
 using System.Globalization;
-using System.Linq;
 using System.Runtime.Caching;
 using System.Threading.Tasks;
 
@@ -25,10 +24,7 @@ namespace AmokApi.ExchangeRates
             if (request is null) throw new ArgumentNullException(nameof(request));
 
             var cacheKey = BuildCacheKey(request);
-
-            ExchangeRatesResponse response;
-
-            response = _Cache.Get(cacheKey) as ExchangeRatesResponse;
+            var response = _Cache.Get(cacheKey) as ExchangeRatesResponse;
 
             if (response is null)
             {

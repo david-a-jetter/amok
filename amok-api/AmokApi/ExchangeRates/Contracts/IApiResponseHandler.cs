@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AmokApi.ExchangeRates
+namespace AmokApi.ExchangeRates.Contracts
 {
     public interface IApiResponseHandler
     {

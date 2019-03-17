@@ -1,8 +1,8 @@
 ﻿using AmokApi.Controllers.Dtos;
 using AmokApi.ExchangeRates;
+using AmokApi.ExchangeRates.Contracts;
 using AmokApi.ExchangeRates.Ecb;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -15,12 +15,12 @@ namespace AmokApi
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -29,8 +29,11 @@ namespace AmokApi
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            var exchangeRatesConfig = Configuration.GetSection("ExchangeRates");
+
             services.AddSingleton((IServiceProvider _) => new HttpClient());
-            services.AddSingleton((IServiceProvider _) => new MemoryCache("ExchangeRates"));
+            services.AddSingleton((IServiceProvider _) =>
+                new MemoryCache(exchangeRatesConfig["CacheSectionName"]));
 
             services.AddTransient<IExchangeRatesDtoFactory>((IServiceProvider _) => new ExchangeRatesDtoFactory());
             services.AddTransient<IExchangeRatesManager>((IServiceProvider sp) =>
@@ -40,7 +43,7 @@ namespace AmokApi
                         new EcbExchangeRatesAccess(
                             new EcbJsonResponseHandler(),
                             sp.GetRequiredService<HttpClient>(),
-                            new Uri("https://api.exchangeratesapi.io"))),
+                            new Uri(exchangeRatesConfig["EcbApiHost"]))),
                     new ExchangeRatesEngine()));
         }
 

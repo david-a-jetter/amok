@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using AmokApi.ExchangeRates.Contracts;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 
